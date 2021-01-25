@@ -1,5 +1,6 @@
 inlets = 1;
 outlets = 1;
+myvalue = 0;
 
 //functions can be called by messages sent to the js object.
 //either send message "compile" to js object or "autowatch 1" for auto-save-reload
@@ -8,11 +9,19 @@ outlets = 1;
 //"*To define a function to respond to a number, you need to name the function msg_int or msg_float.*"
 //"*To handle Max lists, i.e., a message that begins with a number, call your function list. In implementing a list function, you’ll probably want to use the Javascript arguments property, since otherwise you couldn’t handle input of varying length.*"
 // To invoke a function when a patcher file containing the js or jsui object is loaded, define a function called loadbang(). This function will not be called when you instantiate a new js or jsui object and add it to a patcher; it will only be called when a pre-existing patcher file containing a js object is loaded - in other words, at the same time that loadbang objects in a patcher are sending out bangs. 
+//"*Defining a function called getvalueof() permits pattr and related objects to attach to and query an object's current value. The value of an object returned can be a Number, a String, a Dict, or an Array of numbers and/or Strings.*"
 
 post(jsarguments[0] + " hello k");
 
+function getvalueof() {
+    return myvalue; //change later...
+}
 
-function msg_int(a) {
+function setvalueof(a) {
+    myvalue = a;
+}
+
+function list(a) {
     post("something");
 }
 
@@ -20,6 +29,16 @@ function loadbang() {
     post("duh");
 }
 
-function list(a) {
+function msg_int(a) {
     post("something");
 }
+
+privateFunction.local = 1;
+function privateFunction() {
+    post("this function is private because I set local to 1");
+}
+
+ function save() {
+    //embedmessage((func+""), data);
+}
+
