@@ -13,12 +13,22 @@ myvalue = 0;
 
 post(jsarguments[0] + " hello k");
 
+var counter = 0;
+
+
 function getvalueof() {
     return myvalue; //change later...
 }
 
 function setvalueof(a) {
     myvalue = a;
+}
+
+function bang() {
+    outlet(0, counter++);
+    //post(max.getattrnames);
+    var testLet = patcher;
+    post(patcher.firstobject.apppath);
 }
 
 function list(a) {
@@ -39,6 +49,95 @@ function privateFunction() {
 }
 
  function save() {
-    //embedmessage((func+""), data);
+    //embedmessage(funcName, data);
+    //can functionally "save" data by calling save and embedding certain messages...
+
 }
 
+function globalMethods() {
+    //calling every globla method....
+    //cpost is system console, not max window
+    cpost("where does this go compared to post?");
+    error("can write your own errors...");
+    //Sends a message to the named Max object. A named Max object is an object associated with a global symbol (not an object with a patcher-specific name). For example, Max receive objects are bound to global symbols.
+    messnamed("flower", "bang");
+    post("posts to max window");
+}
+
+function jsThisProperties() {
+    //setting every jsthis property...
+    // autowatch 1 sets the object to look after changes and recompile when they are made.
+    //
+    this.autowatch = 1;
+    //Edit font size in textediting window
+    this.editfontsize = 200;
+    //reports inlet that triggered function
+    var i = inlet;
+    //set inlets count
+    inlets = 5;
+    //set insepector to 1 if you want max to look for inspector patch, whcih will be name of script (without .js) and plus -insp.pat.
+    inspector = 1;
+    //access to arguments including file
+    var arg = jsarguments[1];
+    // Lets you send any message to the object that controls the Max application. In addition, the max object has js-specific properties listed in the section on js Max Object Properties.***************** IMPORTANT************************
+    //********************* */
+    //see "Documentation: The Max Object"
+    //time, properties, cmdkeydown,ctrlkeydown, optionkeydown, shiftkeydown, getattrnames, getattr, setattr
+    //messagename, if calling in anything function, or if need messagename for ANY REASON
+    //patcher object...****** IMPORTANT
+    //********************see PATCHER OBJECT */
+    outlets = 5;
+
+}
+
+function jsthismethods() {
+    //arrayfromargs necessary for extracting variable arguments and also for conversion of the arguments to be converted to an Array
+    var a = arrayfromargs(messagename,arguments);
+    a.sort();
+	outlet(0,a);
+    //assist stuff for assist strings are detailed here ("jshis methods")
+
+    // default getter/setter
+    // var foo=2;
+    // declareattribute("foo"); //simple
+
+    // // default getter/setter and embed on save
+    // declareattribute("foo",null,null,1);
+
+    // // explicit getter/setter
+    // declareattribute("foo","getfoo","setfoo");
+
+    // function setfoo(v)
+    // {
+    // foo = v;
+    // }
+
+    // function getfoo()
+    // {
+    // return foo;
+    // }
+
+    // function bang()
+    // {
+    // outlet(0,foo);
+    // }
+    
+    //setinletassist and setoutletassist
+}
+
+function patcherStuff() {
+    //patcher's properties, methods, etc...
+    var p = this.patcher;
+    //this use of the "box" property could be used to traverse up to the top-level patcher
+    var prev = 0;
+    var owner = this.patcher.box;
+    while (owner) {
+        prev = owner;
+        owner = owner.patcher.box;
+    }
+    if (prev)
+    post("top patcher is",prev.patcher.name);
+    //count is number of objects in patcher
+    var num = p.count;
+
+}

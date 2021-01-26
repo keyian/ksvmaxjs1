@@ -40,6 +40,18 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 387.0, 73.0, 91.0, 22.0 ],
+					"text" : "privateFunction"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "jsui",
 					"numinlets" : 1,
@@ -57,7 +69,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 171.0, 184.0, 66.0, 22.0 ],
+					"patching_rect" : [ 387.0, 122.0, 66.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "12421.js",
 						"parameter_enable" : 0
@@ -68,10 +80,17 @@
 
 			}
  ],
-		"lines" : [  ],
+		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+ ],
 		"dependency_cache" : [ 			{
 				"name" : "12421.js",
-				"bootpath" : "~/Desktop/max",
+				"bootpath" : "~/Desktop/max/js",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
