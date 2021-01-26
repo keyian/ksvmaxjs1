@@ -28,7 +28,8 @@ function bang() {
     outlet(0, counter++);
     //post(max.getattrnames);
     var testLet = patcher;
-    post(patcher.firstobject.apppath);
+    //post(patcher.firstobject.apppath);
+    imageCreator("abkv.jpeg");
 }
 
 function list(a) {
@@ -140,4 +141,8 @@ function patcherStuff() {
     //count is number of objects in patcher
     var num = p.count;
 
+}
+
+function imageCreator(a) {
+    myimg = new Image(a);
 }
